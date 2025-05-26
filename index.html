@@ -452,10 +452,7 @@
         <label for="employeeId">מספר ת.ז:</label>
         <input type="text" id="employeeId" name="employeeId" required />
       </div>
-      <div class="form-group">
-        <label for="employeePhone">טלפון:</label>
-        <input type="tel" id="employeePhone" name="phone" required />
-      </div>
+
       <div class="form-group">
         <label>נושאי ההדרכה:</label>
         <div class="checkbox-group">
@@ -1035,7 +1032,6 @@
       date: document.getElementById('projectDate').value,
       employeeName: document.getElementById('employeeName').value,
       employeeId: document.getElementById('employeeId').value,
-      phone: document.getElementById('employeePhone').value,
       topics: topics,
       signature: canvas.toDataURL(),
       timestamp: new Date().toISOString()
@@ -1223,7 +1219,7 @@
     }
 
     let csvContent = 'data:text/csv;charset=utf-8,';
-    csvContent += 'סוג,שם,מספר ת.ז,תאריך,שפה,פרויקט,מיקום,טלפון,נושאי הדרכה,תאריך שמירה\n';
+    csvContent += 'סוג,שם,מספר ת.ז,תאריך,שפה,פרויקט,מיקום,נושאי הדרכה,תאריך שמירה\n';
 
     trainings.forEach(t => {
       const type = t.type === 'periodic' ? 'תקופתי' : 'פרויקט';
@@ -1233,11 +1229,10 @@
       const language = t.language ? (t.language === 'russian' ? 'רוסית' : 'עברית') : '';
       const projectName = t.projectName ? t.projectName : '';
       const location = t.location ? t.location : '';
-      const phone = t.phone ? t.phone : '';
       const topics = t.topics ? t.topics.join('; ') : '';
       const timestamp = t.timestamp;
 
-      const row = [type, name, id, date, language, projectName, location, phone, topics, timestamp]
+      const row = [type, name, id, date, language, projectName, location, topics, timestamp]
         .map(field => `"${field}"`).join(',');
 
       csvContent += row + '\n';
