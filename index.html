@@ -5,9 +5,326 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ארגון י.א מעליות - מערכת ניהול הדרכות בטיחות</title>
 <style>
-  /* כל סגנונות ה-CSS כפי שהיו, כולל עיצוב הטפסים, כפתורים, מודל וכו' */
-  /* ... (קוד CSS מלא כאן, כמו בדוגמה הקודמת) */
-  /* לצורך קיצור, אשלח לך את הקוד המלא בקובץ נפרד אם תרצה */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .form-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="tel"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  input[type="checkbox"] {
+    margin-left: 10px;
+    transform: scale(1.2);
+  }
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  .checkbox-group label {
+    margin-bottom: 0;
+    margin-right: 10px;
+    font-weight: normal;
+  }
+  .signature-pad {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: white;
+    touch-action: none;
+  }
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  button {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .btn-primary {
+    background-color: #1a73e8;
+    color: white;
+  }
+  .btn-primary:hover {
+    background-color: #1557b0;
+  }
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  .btn-secondary:hover {
+    background-color: #545b62;
+  }
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  .navigation-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .admin-section {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .admin-section h3 {
+    color: #856404;
+    margin-bottom: 15px;
+  }
+  .training-summary {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+  }
+  .training-summary h4 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .training-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .detail-item {
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 3px;
+  }
+  .detail-item strong {
+    color: #495057;
+  }
+  .status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .status-active {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  .status-expired {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  .status-warning {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  .hidden {
+    display: none;
+  }
+  .confirmation-text {
+    background-color: #e8f4f8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-right: 4px solid #1a73e8;
+  }
+  .training-topics {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .training-topics h3 {
+    color: #1a73e8;
+    margin-bottom: 15px;
+  }
+  .topic-list {
+    list-style: none;
+    padding: 0;
+  }
+  .topic-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+  .topic-list li:last-child {
+    border-bottom: none;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close:hover,
+  .close:focus {
+    color: black;
+  }
+  .safety-instructions {
+    margin-top: 20px;
+  }
+  .safety-instructions h3 {
+    color: #dc3545;
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+  }
+  .safety-instructions ul {
+    margin-bottom: 15px;
+    padding-right: 20px;
+  }
+  .safety-instructions li {
+    margin-bottom: 5px;
+  }
+  .must-read-checkbox {
+    background-color: #fff3cd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #ffeaa7;
+  }
+  .must-read-checkbox label {
+    font-weight: bold;
+    color: #856404;
+  }
+  .language-selector {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #bbdefb;
+  }
+  .language-selector h3 {
+    color: #1565c0;
+    margin-bottom: 10px;
+  }
+  .radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .radio-group input[type="radio"] {
+    margin-left: 5px;
+    transform: scale(1.2);
+  }
+  .radio-group label {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+  .russian-text {
+    direction: ltr;
+    text-align: left;
+    font-family: 'Times New Roman', serif;
+  }
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+    .form-section {
+      padding: 20px;
+    }
+    .button-group {
+      flex-direction: column;
+    }
+    .navigation-buttons {
+      flex-direction: column;
+    }
+    .radio-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -16,7 +333,7 @@
     <h1>ארגון י.א מעליות</h1>
   </header>
 
-  <!-- דף נחיתה -->
+  <!-- Landing Page -->
   <div id="landingPage" class="form-section">
     <h2>מערכת ניהול הדרכות בטיחות</h2>
     <p>ברוכים הבאים למערכת ניהול הדרכות הבטיחות של ארגון י.א מעליות</p>
@@ -29,12 +346,28 @@
     </div>
   </div>
 
-  <!-- טופס הדרכה תקופתית -->
+  <!-- Periodic Training Form -->
   <div id="periodicForm" class="form-section hidden">
     <div class="navigation-buttons">
       <button class="btn-secondary" onclick="showLanding()">חזרה לדף הבית</button>
     </div>
     <h2>טופס הדרכה תקופתית</h2>
+    
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <h3>בחר שפה / Выберите язык:</h3>
+      <div class="radio-group">
+        <div>
+          <input type="radio" id="langHebrew" name="language" value="hebrew" checked onchange="toggleLanguage()" />
+          <label for="langHebrew">עברית</label>
+        </div>
+        <div>
+          <input type="radio" id="langRussian" name="language" value="russian" onchange="toggleLanguage()" />
+          <label for="langRussian">Русский</label>
+        </div>
+      </div>
+    </div>
+    
     <div class="training-topics">
       <h3>הדרכת בטיחות תקופתית</h3>
       <ul class="topic-list">
@@ -89,7 +422,7 @@
     </form>
   </div>
 
-  <!-- טופס הדרכת פרויקט -->
+  <!-- Project Training Form -->
   <div id="projectForm" class="form-section hidden">
     <div class="navigation-buttons">
       <button class="btn-secondary" onclick="showLanding()">חזרה לדף הבית</button>
@@ -162,6 +495,26 @@
           <input type="checkbox" id="cleanliness" name="topics" value="סדר וניקיון" />
           <label for="cleanliness">סדר וניקיון</label>
         </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="take2" name="topics" value="Take 2 - עצור וחשוב" />
+          <label for="take2">Take 2 - עצור וחשוב</label>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="closing" name="topics" value="סגירת פתחים וחדרי מכונה" />
+          <label for="closing">סגירת פתחים וחדרי מכונה</label>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="pitEntry" name="topics" value="נוהל כניסה ויציאה מבור המעלית" />
+          <label for="pitEntry">נוהל כניסה ויציאה מבור המעלית</label>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="bridging" name="topics" value="נוהל גישור בטחונות מעלית" />
+          <label for="bridging">נוהל גישור בטחונות מעלית</label>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="shaftWork" name="topics" value="עבודה בפיר ובור המעלית" />
+          <label for="shaftWork">עבודה בפיר ובור המעלית</label>
+        </div>
       </div>
       <div class="form-group">
         <label for="projectSignature">חתימת העובד:</label>
@@ -175,7 +528,7 @@
     </form>
   </div>
 
-  <!-- כניסת מנהל -->
+  <!-- Admin Login -->
   <div id="adminLogin" class="form-section hidden">
     <div class="navigation-buttons">
       <button class="btn-secondary" onclick="showLanding()">חזרה לדף הבית</button>
@@ -190,7 +543,7 @@
     </form>
   </div>
 
-  <!-- פאנל מנהל -->
+  <!-- Admin Panel -->
   <div id="adminPanel" class="form-section hidden">
     <div class="navigation-buttons">
       <button class="btn-secondary" onclick="showLanding()">יציאה</button>
@@ -208,12 +561,12 @@
   </div>
 </div>
 
-<!-- מודל הוראות בטיחות -->
+<!-- Safety Instructions Modal -->
 <div id="safetyModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeSafetyModal()">&times;</span>
     <h2>הוראות בטיחות - ארגון י.א מעליות</h2>
-    <div class="safety-instructions">
+    <div class="safety-instructions" id="hebrewInstructions">
       <h3>1. ⚡ סיכוני חשמל</h3>
       <ul>
         <li>לפני כל עבודה חשמלית - נתק את המתח הראשי</li>
@@ -320,16 +673,579 @@
         <li>שמור על קשר רציף עם העובד השני</li>
       </ul>
     </div>
+    
+    <!-- Russian Instructions -->
+    <div class="safety-instructions russian-text" id="russianInstructions" style="display: none;">
+      <h3>1. ⚡ Электрические опасности</h3>
+      <ul>
+        <li>Перед любыми электрическими работами - отключите основное питание</li>
+        <li>Всегда используйте изолированные инструменты</li>
+        <li>Проверьте напряжение мультиметром перед касанием проводов</li>
+        <li>Запрещено работать мокрыми руками</li>
+      </ul>
+      <h3>2. 🏗️ Работа на высоте</h3>
+      <ul>
+        <li>Обязательно носить каску при любой работе в шахте</li>
+        <li>Используйте стандартную страховочную привязь выше 2 метров</li>
+        <li>Убедитесь, что лестница устойчива и заблокирована перед подъемом</li>
+        <li>Запрещено работать в одиночку на высоте</li>
+      </ul>
+      <h3>3. 🔧 Подъем грузов</h3>
+      <ul>
+        <li>Поднимайте ногами, а не спиной</li>
+        <li>Вес свыше 25 кг - используйте помощь или подъемное оборудование</li>
+        <li>Держите груз близко к телу при подъеме</li>
+        <li>Поворачивайте всем телом, а не только поясницей</li>
+      </ul>
+      <h3>4. 🚨 Средства индивидуальной защиты</h3>
+      <ul>
+        <li>Защитная обувь - обязательна на любом рабочем объекте</li>
+        <li>Рабочие перчатки - при работе с острыми деталями</li>
+        <li>Защитные очки - при сварочных или режущих работах</li>
+        <li>Беруши - при шуме свыше 85 децибел</li>
+      </ul>
+      <h3>5. 🔥 Пожаротушение</h3>
+      <ul>
+        <li>Знайте, где расположены огнетушители на объекте</li>
+        <li>Электрический пожар - используйте только огнетушитель CO2</li>
+        <li>В случае пожара - отойдите и вызовите помощь</li>
+        <li>Не пытайтесь тушить большой пожар в одиночку</li>
+      </ul>
+      <h3>6. ⚠️ Опасные материалы</h3>
+      <ul>
+        <li>Всегда читайте предупреждающую этикетку</li>
+        <li>Храните масла и топливо вдали от тепла</li>
+        <li>Используйте перчатки при работе с чистящими средствами</li>
+        <li>Проветривайте помещение при работе с растворителями</li>
+      </ul>
+      <h3>7. 🛠️ Рабочие инструменты</h3>
+      <ul>
+        <li>Проверяйте инструменты перед использованием - нет трещин или повреждений</li>
+        <li>Отключайте электроинструменты от питания при замене принадлежностей</li>
+        <li>Храните острые инструменты с защитным чехлом</li>
+        <li>Не используйте поврежденный инструмент - сообщите немедленно</li>
+      </ul>
+      <h3>8. 🚪 Блокировка лифта</h3>
+      <ul>
+        <li>Разместите табличку "Лифт в обслуживании" на всех этажах</li>
+        <li>Заблокируйте лифт главным ключом</li>
+        <li>Убедитесь, что в кабине нет людей перед блокировкой</li>
+        <li>По окончании - проверьте исправность перед возвратом в эксплуатацию</li>
+      </ul>
+      <h3>9. 📱 Чрезвычайные ситуации</h3>
+      <ul>
+        <li>Телефон экстренных служб: 101 (скорая), 102 (полиция), 100 (пожарная)</li>
+        <li>Немедленно сообщите руководителю о любом несчастном случае</li>
+        <li>Не перемещайте пострадавшего, если нет непосредственной опасности</li>
+        <li>Знайте, где находится аптечка первой помощи</li>
+      </ul>
+      <h3>10. 🧹 Порядок и чистота</h3>
+      <ul>
+        <li>Убирайте рабочую зону в конце каждого дня</li>
+        <li>Не оставляйте инструменты или детали в шахте</li>
+        <li>Немедленно убирайте масла и жидкости</li>
+        <li>Убедитесь, что пути эвакуации всегда свободны</li>
+      </ul>
+      <h3>11. 🛑 Take 2 - остановись и подумай</h3>
+      <ul>
+        <li>Остановитесь перед началом любой задачи</li>
+        <li>Выявите возможные риски</li>
+        <li>Спланируйте работу безопасно</li>
+        <li>Убедитесь, что у вас есть подходящие инструменты и оборудование</li>
+      </ul>
+      <h3>12. 🚪 Закрытие проемов и машинных помещений</h3>
+      <ul>
+        <li>Всегда закрывайте двери шахты после работы</li>
+        <li>Запирайте машинные помещения по окончании работы</li>
+        <li>Убедитесь, что в шахте нет открытых проемов</li>
+        <li>Четко обозначайте опасные зоны</li>
+      </ul>
+      <h3>13. 🕳️ Процедура входа и выхода из приямка лифта</h3>
+      <ul>
+        <li>Убедитесь, что лифт заблокирован и отключен</li>
+        <li>Используйте стандартную и устойчивую лестницу</li>
+        <li>Уведомите другого работника о вашем входе в приямок</li>
+        <li>Проверьте достаточное освещение перед входом</li>
+      </ul>
+      <h3>14. 🔌 Процедура перемычки систем безопасности лифта</h3>
+      <ul>
+        <li>Устанавливайте перемычки только при необходимости</li>
+        <li>Документируйте каждую перемычку в рабочем журнале</li>
+        <li>Немедленно снимайте перемычки по окончании работы</li>
+        <li>Проверьте исправность всех систем безопасности перед запуском</li>
+      </ul>
+      <h3>15. 🏗️ Работа в шахте и приямке лифта</h3>
+      <ul>
+        <li>Носите полный комплект защитного снаряжения - каску, привязь, защитную обувь</li>
+        <li>Обеспечьте хорошее освещение во всей рабочей зоне</li>
+        <li>Не работайте в одиночку - всегда с другим работником</li>
+        <li>Поддерживайте постоянную связь со вторым работником</li>
+      </ul>
+    </div>
+    
     <div style="margin-top: 30px; text-align: center;">
-      <p style="font-weight: bold; color: #dc3545;">⚠️ זכור: הבטיחות שלך ושל חבריך לעבודה היא הדבר החשוב ביותר!</p>
-      <button class="btn-primary" onclick="confirmReadInstructions()">קראתי והבנתי</button>
+      <div id="hebrewBottom">
+        <p style="font-weight: bold; color: #dc3545;">⚠️ זכור: הבטיחות שלך ושל חבריך לעבודה היא הדבר החשוב ביותר!</p>
+      </div>
+      <div id="russianBottom" class="russian-text" style="display: none;">
+        <p style="font-weight: bold; color: #dc3545;">⚠️ Помните: ваша безопасность и безопасность ваших коллег - самое важное!</p>
+      </div>
+      <button class="btn-primary" onclick="confirmReadInstructions()">קראתי והבנתי / Я прочитал и понял</button>
     </div>
   </div>
 </div>
 
 <script>
-  // כל הקוד של ה-JS כולל ניווט, חתימה, שמירת נתונים, פאנל מנהל, מודל הוראות בטיחות וכו'
-  // בגלל מגבלת תווים, אשמח לשלוח לך את הקוד המלא בקטעים או בקובץ נפרד
+  let currentLanguage = 'hebrew';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('periodicDate').value = today;
+    document.getElementById('projectDate').value = today;
+
+    initializeSignaturePad('periodicSignature');
+    initializeSignaturePad('projectSignature');
+  });
+
+  function toggleLanguage() {
+    const hebrew = document.getElementById('langHebrew').checked;
+    const russian = document.getElementById('langRussian').checked;
+    
+    if (russian) {
+      currentLanguage = 'russian';
+    } else {
+      currentLanguage = 'hebrew';
+    }
+    
+    // Update instructions display in modal if it's open
+    const modal = document.getElementById('safetyModal');
+    if (modal.style.display === 'block') {
+      updateInstructionsLanguage();
+    }
+  }
+
+  function updateInstructionsLanguage() {
+    const hebrewInstructions = document.getElementById('hebrewInstructions');
+    const russianInstructions = document.getElementById('russianInstructions');
+    const hebrewBottom = document.getElementById('hebrewBottom');
+    const russianBottom = document.getElementById('russianBottom');
+    
+    if (currentLanguage === 'russian') {
+      hebrewInstructions.style.display = 'none';
+      russianInstructions.style.display = 'block';
+      hebrewBottom.style.display = 'none';
+      russianBottom.style.display = 'block';
+    } else {
+      hebrewInstructions.style.display = 'block';
+      russianInstructions.style.display = 'none';
+      hebrewBottom.style.display = 'block';
+      russianBottom.style.display = 'none';
+    }
+  }
+
+  function showLanding() {
+    hideAllSections();
+    document.getElementById('landingPage').classList.remove('hidden');
+  }
+
+  function showPeriodicForm() {
+    hideAllSections();
+    document.getElementById('periodicForm').classList.remove('hidden');
+  }
+
+  function showProjectForm() {
+    hideAllSections();
+    document.getElementById('projectForm').classList.remove('hidden');
+  }
+
+  function showAdminLogin() {
+    hideAllSections();
+    document.getElementById('adminLogin').classList.remove('hidden');
+  }
+
+  function showAdminPanel() {
+    hideAllSections();
+    document.getElementById('adminPanel').classList.remove('hidden');
+    loadAdminData();
+  }
+
+  function hideAllSections() {
+    document.getElementById('landingPage').classList.add('hidden');
+    document.getElementById('periodicForm').classList.add('hidden');
+    document.getElementById('projectForm').classList.add('hidden');
+    document.getElementById('adminLogin').classList.add('hidden');
+    document.getElementById('adminPanel').classList.add('hidden');
+  }
+
+  function showSafetyInstructions() {
+    document.getElementById('safetyModal').style.display = 'block';
+    updateInstructionsLanguage();
+  }
+
+  function closeSafetyModal() {
+    document.getElementById('safetyModal').style.display = 'none';
+  }
+
+  function confirmReadInstructions() {
+    document.getElementById('readInstructions').checked = true;
+    closeSafetyModal();
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('safetyModal');
+    if (event.target == modal) {
+      closeSafetyModal();
+    }
+  }
+
+  function initializeSignaturePad(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    canvas.width = canvas.offsetWidth;
+    canvas.height = 200;
+
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    canvas.addEventListener('touchstart', handleTouch);
+    canvas.addEventListener('touchmove', handleTouch);
+    canvas.addEventListener('touchend', stopDrawing);
+
+    function startDrawing(e) {
+      isDrawing = true;
+      [lastX, lastY] = getCoordinates(e);
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const [currentX, currentY] = getCoordinates(e);
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(currentX, currentY);
+      ctx.stroke();
+      [lastX, lastY] = [currentX, currentY];
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+    }
+
+    function handleTouch(e) {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' :
+        e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }
+
+    function getCoordinates(e) {
+      const rect = canvas.getBoundingClientRect();
+      return [
+        e.clientX - rect.left,
+        e.clientY - rect.top
+      ];
+    }
+  }
+
+  function clearSignature(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  document.getElementById('periodicTrainingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (!document.getElementById('readInstructions').checked) {
+      alert('יש לקרוא את הוראות הבטיחות לפני שליחת הטופס');
+      return;
+    }
+
+    const canvas = document.getElementById('periodicSignature');
+    if (isCanvasBlank(canvas)) {
+      alert('אנא חתום בטופס לפני השליחה');
+      return;
+    }
+
+    const formData = {
+      type: 'periodic',
+      name: document.getElementById('periodicName').value,
+      id: document.getElementById('periodicId').value,
+      date: document.getElementById('periodicDate').value,
+      language: currentLanguage,
+      signature: canvas.toDataURL(),
+      timestamp: new Date().toISOString()
+    };
+
+    saveTrainingData(formData);
+    alert('ההדרכה נשמרה בהצלחה!');
+    resetPeriodicForm();
+    showLanding();
+  });
+
+  document.getElementById('projectTrainingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const topics = [];
+    document.querySelectorAll('#projectTrainingForm input[name="topics"]:checked').forEach(checkbox => {
+      topics.push(checkbox.value);
+    });
+
+    if (topics.length === 0) {
+      alert('יש לבחור לפחות נושא אחד להדרכה');
+      return;
+    }
+
+    const canvas = document.getElementById('projectSignature');
+    if (isCanvasBlank(canvas)) {
+      alert('אנא חתום בטופס לפני השליחה');
+      return;
+    }
+
+    const formData = {
+      type: 'project',
+      projectName: document.getElementById('projectName').value,
+      location: document.getElementById('projectLocation').value,
+      date: document.getElementById('projectDate').value,
+      employeeName: document.getElementById('employeeName').value,
+      employeeId: document.getElementById('employeeId').value,
+      phone: document.getElementById('employeePhone').value,
+      topics: topics,
+      signature: canvas.toDataURL(),
+      timestamp: new Date().toISOString()
+    };
+
+    saveTrainingData(formData);
+    alert('הדרכת הפרויקט נשמרה בהצלחה!');
+    resetProjectForm();
+    showLanding();
+  });
+
+  document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const password = document.getElementById('adminPassword').value;
+    if (password === 'admin123') {
+      showAdminPanel();
+    } else {
+      alert('סיסמה שגויה');
+    }
+
+    document.getElementById('adminPassword').value = '';
+  });
+
+  function saveTrainingData(data) {
+    const trainings = getTrainings();
+    trainings.push(data);
+    localStorage.setItem('safetyTrainings', JSON.stringify(trainings));
+  }
+
+  function getTrainings() {
+    const data = localStorage.getItem('safetyTrainings');
+    return data ? JSON.parse(data) : [];
+  }
+
+  function resetPeriodicForm() {
+    document.getElementById('periodicTrainingForm').reset();
+    clearSignature('periodicSignature');
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('periodicDate').value = today;
+    // Reset language to Hebrew
+    document.getElementById('langHebrew').checked = true;
+    currentLanguage = 'hebrew';
+  }
+
+  function resetProjectForm() {
+    document.getElementById('projectTrainingForm').reset();
+    clearSignature('projectSignature');
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('projectDate').value = today;
+  }
+
+  function loadAdminData() {
+    const trainings = getTrainings();
+    displayTrainingSummary(trainings);
+    displayRenewalList(trainings);
+  }
+
+  function displayTrainingSummary(trainings) {
+    const summaryDiv = document.getElementById('trainingSummary');
+    summaryDiv.innerHTML = '';
+
+    if (trainings.length === 0) {
+      summaryDiv.innerHTML = '<p>אין הדרכות רשומות במערכת</p>';
+      return;
+    }
+
+    const employeeMap = {};
+    trainings.forEach(training => {
+      const key = training.type === 'periodic' ? training.id : training.employeeId;
+      if (!employeeMap[key]) {
+        employeeMap[key] = {
+          name: training.type === 'periodic' ? training.name : training.employeeName,
+          trainings: []
+        };
+      }
+      employeeMap[key].trainings.push(training);
+    });
+
+    Object.keys(employeeMap).forEach(id => {
+      const employee = employeeMap[id];
+      const div = document.createElement('div');
+      div.className = 'training-summary';
+
+      const latestPeriodic = employee.trainings
+        .filter(t => t.type === 'periodic')
+        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
+      const projectCount = employee.trainings.filter(t => t.type === 'project').length;
+
+      let html = `<h4>${employee.name} (${id})</h4>`;
+      html += '<div class="training-details">';
+
+      if (latestPeriodic) {
+        const renewalDate = new Date(latestPeriodic.date);
+        renewalDate.setFullYear(renewalDate.getFullYear() + 1);
+        const daysUntilRenewal = Math.floor((renewalDate - new Date()) / (1000 * 60 * 60 * 24));
+
+        let statusClass = 'status-active';
+        if (daysUntilRenewal < 0) statusClass = 'status-expired';
+        else if (daysUntilRenewal < 30) statusClass = 'status-warning';
+
+        const languageInfo = latestPeriodic.language ? ` (${latestPeriodic.language === 'russian' ? 'רוסית' : 'עברית'})` : '';
+
+        html += `
+          <div class="detail-item">
+            <strong>הדרכה תקופתית אחרונה:</strong> ${formatDate(latestPeriodic.date)}${languageInfo}
+          </div>
+          <div class="detail-item">
+            <strong>תוקף עד:</strong> ${formatDate(renewalDate)}
+            <span class="status-badge ${statusClass}">
+              ${daysUntilRenewal < 0 ? 'פג תוקף' : daysUntilRenewal < 30 ? 'דרוש חידוש בקרוב' : 'תקף'}
+            </span>
+          </div>
+        `;
+      }
+
+      html += `
+        <div class="detail-item">
+          <strong>הדרכות פרויקט:</strong> ${projectCount}
+        </div>
+      `;
+
+      html += '</div>';
+      div.innerHTML = html;
+      summaryDiv.appendChild(div);
+    });
+  }
+
+  function displayRenewalList(trainings) {
+    const renewalDiv = document.getElementById('renewalList');
+    renewalDiv.innerHTML = '';
+
+    const employeeMap = {};
+    trainings.forEach(training => {
+      if (training.type === 'periodic') {
+        const key = training.id;
+        if (!employeeMap[key] || new Date(training.date) > new Date(employeeMap[key].date)) {
+          employeeMap[key] = training;
+        }
+      }
+    });
+
+    const needsRenewal = [];
+    Object.values(employeeMap).forEach(training => {
+      const renewalDate = new Date(training.date);
+      renewalDate.setFullYear(renewalDate.getFullYear() + 1);
+      const daysUntilRenewal = Math.floor((renewalDate - new Date()) / (1000 * 60 * 60 * 24));
+      if (daysUntilRenewal < 30) {
+        needsRenewal.push({
+          name: training.name,
+          id: training.id,
+          renewalDate: renewalDate,
+          daysLeft: daysUntilRenewal
+        });
+      }
+    });
+
+    if (needsRenewal.length === 0) {
+      renewalDiv.innerHTML = '<p>אין עובדים שצריכים חידוש הדרכה כרגע</p>';
+      return;
+    }
+
+    needsRenewal.forEach(emp => {
+      const div = document.createElement('div');
+      div.className = 'training-summary';
+      div.innerHTML = `
+        <h4>${emp.name} (${emp.id})</h4>
+        <p>תוקף הדרכה מסתיים ב-${formatDate(emp.renewalDate)} (${emp.daysLeft} ימים)</p>
+      `;
+      renewalDiv.appendChild(div);
+    });
+  }
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('he-IL');
+  }
+
+  function exportToExcel() {
+    const trainings = getTrainings();
+    if (trainings.length === 0) {
+      alert('אין נתונים לייצוא');
+      return;
+    }
+
+    let csvContent = 'data:text/csv;charset=utf-8,';
+    csvContent += 'סוג,שם,מספר ת.ז,תאריך,שפה,פרויקט,מיקום,טלפון,נושאי הדרכה,תאריך שמירה\n';
+
+    trainings.forEach(t => {
+      const type = t.type === 'periodic' ? 'תקופתי' : 'פרויקט';
+      const name = t.type === 'periodic' ? t.name : t.employeeName;
+      const id = t.type === 'periodic' ? t.id : t.employeeId;
+      const date = t.date;
+      const language = t.language ? (t.language === 'russian' ? 'רוסית' : 'עברית') : '';
+      const projectName = t.projectName ? t.projectName : '';
+      const location = t.location ? t.location : '';
+      const phone = t.phone ? t.phone : '';
+      const topics = t.topics ? t.topics.join('; ') : '';
+      const timestamp = t.timestamp;
+
+      const row = [type, name, id, date, language, projectName, location, phone, topics, timestamp]
+        .map(field => `"${field}"`).join(',');
+
+      csvContent += row + '\n';
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'safety_training_data.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function isCanvasBlank(canvas) {
+    const blank = document.createElement('canvas');
+    blank.width = canvas.width;
+    blank.height = canvas.height;
+    return canvas.toDataURL() === blank.toDataURL();
+  }
 </script>
 </body>
 </html>
